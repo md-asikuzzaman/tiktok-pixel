@@ -1,28 +1,64 @@
 {
-  "name": "tiktok-pixel-suite",
+  "name": "tiktok-pixel",
   "version": "1.0.0",
+  "description": "TikTok Pixel SDK for React and Next.js applications",
+
+  "license": "MIT",
+  "author": "Md Asikuzzaman",
+
+  "keywords": [
+    "tiktok",
+    "tiktok-pixel",
+    "pixel",
+    "analytics",
+    "tracking",
+    "react",
+    "nextjs",
+    "next"
+  ],
+
+  "homepage": "https://github.com/md-asikuzzaman/tiktok-pixel",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/md-asikuzzaman/tiktok-pixel.git"
+  },
+
+  "files": ["dist"],
+
+  "sideEffects": false,
+
   "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "react": "^19.2.6"
+
+  "peerDependencies": {
+    "next": ">=15",
+    "react": ">=18",
+    "react-dom": ">=18"
   },
+
   "devDependencies": {
     "@types/node": "^25.7.0",
     "@types/react": "^19.2.14",
-    "next": "^16.2.6",
+    "next": "^15.5.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3"
-  },
-  "peerDependencies": {
-    "react": ">=18",
-    "next": ">=13"
   }
 }

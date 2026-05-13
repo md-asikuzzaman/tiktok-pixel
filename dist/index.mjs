@@ -1,27 +1,4 @@
-// src/core/events.ts
-var track = (event, data) => {
-  var _a, _b;
-  if (typeof window !== "undefined" && window.ttq) {
-    window.ttq.track(event, data);
-  } else if (((_b = (_a = globalThis.process) == null ? void 0 : _a.env) == null ? void 0 : _b.NODE_ENV) === "development") {
-    console.warn(
-      `[TikTok Pixel] "${event}" fired before initialization`
-    );
-  }
-};
-var page = () => {
-  if (typeof window !== "undefined" && window.ttq) {
-    window.ttq.page();
-  }
-};
-
-// src/next/index.tsx
-import { usePathname, useSearchParams } from "next/navigation";
-import Script from "next/script";
-import { Suspense, useEffect } from "react";
-
-// src/core/snippet.ts
-var createTikTokSnippet = (id, debug) => `
+var u=(t,o)=>{var e,i;typeof window!="undefined"&&window.ttq?window.ttq.track(t,o):((i=(e=globalThis.process)==null?void 0:e.env)==null?void 0:i.NODE_ENV)==="development"&&console.warn(`[TikTok Pixel] "${t}" fired before initialization`)},w=()=>{typeof window!="undefined"&&window.ttq&&window.ttq.page()};import{usePathname as c,useSearchParams as p}from"next/navigation";import f from"next/script";import{Suspense as d,useEffect as l}from"react";var n=(t,o)=>`
 !function (w, d, t) {
   w.TiktokAnalyticsObject = t;
   var ttq = w[t] = w[t] || [];
@@ -74,55 +51,9 @@ var createTikTokSnippet = (id, debug) => `
     a.parentNode.insertBefore(o, a);
   };
 
-  ttq.load('${id}');
+  ttq.load('${t}');
 
-  ${debug ? "ttq.debug();" : ""}
+  ${o?"ttq.debug();":""}
 }(window, document, 'ttq');
-`;
-
-// src/next/index.tsx
-import { jsx } from "react/jsx-runtime";
-function PixelLogic({ id, debug }) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  useEffect(() => {
-    if (window.ttq) {
-      window.ttq.page();
-    }
-  }, [pathname, searchParams]);
-  return /* @__PURE__ */ jsx(Script, { id: "tiktok-pixel-next", strategy: "afterInteractive", children: createTikTokSnippet(id, debug) });
-}
-function TikTokPixelNext(props) {
-  return /* @__PURE__ */ jsx(Suspense, { fallback: null, children: /* @__PURE__ */ jsx(PixelLogic, { ...props }) });
-}
-
-// src/react/index.tsx
-import { useEffect as useEffect2 } from "react";
-
-// src/core/inject.ts
-var injectTikTokPixel = (id, debug) => {
-  if (typeof window === "undefined") return;
-  if (window.ttq) return;
-  const script = document.createElement("script");
-  script.innerHTML = createTikTokSnippet(id, debug);
-  document.head.appendChild(script);
-};
-
-// src/react/index.tsx
-function useTikTokReact(id, location, debug) {
-  useEffect2(() => {
-    injectTikTokPixel(id, debug);
-  }, [id, debug]);
-  useEffect2(() => {
-    if (window.ttq) {
-      window.ttq.page();
-    }
-  }, [location]);
-}
-export {
-  TikTokPixelNext,
-  page,
-  track,
-  useTikTokReact
-};
+`;import{jsx as r}from"react/jsx-runtime";function m({id:t,debug:o}){let e=c(),i=p();return l(()=>{window.ttq&&window.ttq.page()},[e,i]),r(f,{id:"tiktok-pixel-next",strategy:"afterInteractive",children:n(t,o)})}function k(t){return r(d,{fallback:null,children:r(m,{...t})})}var b=k;import{useEffect as s}from"react";var a=(t,o)=>{if(typeof window=="undefined"||window.ttq)return;let e=document.createElement("script");e.innerHTML=n(t,o),document.head.appendChild(e)};function N(t,o,e){s(()=>{a(t,e)},[t,e]),s(()=>{window.ttq&&window.ttq.page()},[o])}export{k as TikTokPixel,b as TikTokPixelNext,w as page,u as track,N as useTikTokReact};
 //# sourceMappingURL=index.mjs.map

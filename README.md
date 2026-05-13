@@ -1,4 +1,4 @@
-# tiktok-pixel-suite
+# tiktok-pixel
 
 > A small, framework-friendly library to integrate the TikTok Pixel in Next.js, React (Vite), and other environments. Focused on developer experience with typed exports, easy server/client usage, and simple event tracking.
 
@@ -11,9 +11,9 @@
 **Installation**
 
 ```bash
-npm install tiktok-pixel-suite
+npm install tiktok-pixel
 # or
-yarn add tiktok-pixel-suite
+yarn add tiktok-pixel
 ```
 
 **Quick Start**
@@ -29,7 +29,7 @@ Example (`pages/_app.tsx`):
 
 ```tsx
 import type { AppProps } from "next/app";
-import { TikTokPixelNext } from "tiktok-pixel-suite";
+import { TikTokPixelNext } from "tiktok-pixel";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
 Track events anywhere in your app by importing `track`:
 
 ```ts
-import { track } from "tiktok-pixel-suite";
+import { track } from "tiktok-pixel";
 
 track("AddToCart", {
   value: 20,
@@ -65,7 +65,7 @@ Example (`App.tsx`):
 
 ```tsx
 import { useLocation } from "react-router-dom";
-import { useTikTokReact } from "tiktok-pixel-suite";
+import { useTikTokReact } from "tiktok-pixel";
 
 function App() {
   const location = useLocation();
@@ -82,7 +82,7 @@ export default App;
 Track events (same `track` API):
 
 ```ts
-import { track } from "tiktok-pixel-suite";
+import { track } from "tiktok-pixel";
 
 function onAddToCart() {
   track("AddToCart", { value: 20, currency: "USD" });
@@ -103,7 +103,7 @@ function onAddToCart() {
 Example: combine hook + track
 
 ```tsx
-import { useTikTokReact, track } from "tiktok-pixel-suite";
+import { useTikTokReact, track } from "tiktok-pixel";
 import { useLocation } from "react-router-dom";
 
 function App() {

@@ -15,8 +15,9 @@ declare global {
 declare const track: (event: TikTokEvent, data?: object) => void;
 declare const page: () => void;
 
-declare function TikTokPixelNext(props: PixelOptions): react_jsx_runtime.JSX.Element;
+declare function TikTokPixel(props: PixelOptions): react_jsx_runtime.JSX.Element;
+declare const TikTokPixelNext: typeof TikTokPixel;
 
 declare function useTikTokReact(id: string, location?: any, debug?: boolean): void;
 
-export { type PixelOptions, type TikTokEvent, TikTokPixelNext, page, track, useTikTokReact };
+export { type PixelOptions, type TikTokEvent, TikTokPixel, TikTokPixelNext, page, track, useTikTokReact };
