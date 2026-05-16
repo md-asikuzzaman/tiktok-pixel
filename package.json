@@ -1,64 +1,73 @@
 {
   "name": "tiktok-pixel",
-  "version": "1.0.0",
-  "description": "TikTok Pixel SDK for React and Next.js applications",
-
+  "version": "1.0.1",
+  "description": "A lightweight and customizable React avatar component for Next.js applications, supporting initials, images, and fallback options.",
   "license": "MIT",
   "author": "Md Asikuzzaman",
-
-  "keywords": [
-    "tiktok",
-    "tiktok-pixel",
-    "pixel",
-    "analytics",
-    "tracking",
-    "react",
-    "nextjs",
-    "next"
-  ],
-
-  "homepage": "https://github.com/md-asikuzzaman/tiktok-pixel",
-
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/md-asikuzzaman/tiktok-pixel.git"
-  },
-
-  "files": ["dist"],
-
-  "sideEffects": false,
-
+  "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
     }
   },
-
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "tsup",
     "dev": "tsup --watch",
-    "clean": "rm -rf dist"
+    "build": "tsup",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx"
   },
-
+  "keywords": [
+    "react",
+    "nextjs",
+    "avatar",
+    "react-avatar",
+    "next-avatar",
+    "profile",
+    "user-avatar",
+    "image-avatar",
+    "initials-avatar",
+    "headless"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/md-asikuzzaman/tiktok-pixel"
+  },
+  "bugs": {
+    "url": "https://github.com/md-asikuzzaman/tiktok-pixel/issues"
+  },
+  "homepage": "https://github.com/md-asikuzzaman/tiktok-pixel#readme",
   "peerDependencies": {
-    "next": ">=15",
-    "react": ">=18",
-    "react-dom": ">=18"
+    "next": ">=16.0.0 <17",
+    "react": ">=18.3.0 <20",
+    "react-dom": ">=18.3.0 <20"
   },
-
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  },
   "devDependencies": {
-    "@types/node": "^25.7.0",
-    "@types/react": "^19.2.14",
-    "next": "^15.5.18",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tsup": "^8.5.1",
+    "@types/node": "^22.10.10",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "next": "^16.2.6",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "tsup": "^8.3.5",
     "typescript": "^6.0.3"
   }
 }

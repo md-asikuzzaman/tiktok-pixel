@@ -1,14 +1,13 @@
-"use client";
+'use client';
 
-import { usePathname, useSearchParams } from "next/navigation";
-import Script from "next/script";
-import { Suspense, useEffect } from "react";
-import { createTikTokSnippet } from "../core/snippet";
-import { PixelOptions } from "../types";
+import { usePathname, useSearchParams } from 'next/navigation';
+import Script from 'next/script';
+import { Suspense, useEffect } from 'react';
+import { createTikTokSnippet } from '../core/snippet';
+import type { PixelOptions } from '@/types';
 
-function PixelLogic({ id, debug }: PixelOptions) {
+function PixelLogic({ pixelId, debug }: PixelOptions) {
   const pathname = usePathname();
-
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -18,13 +17,13 @@ function PixelLogic({ id, debug }: PixelOptions) {
   }, [pathname, searchParams]);
 
   return (
-    <Script id="tiktok-pixel-next" strategy="afterInteractive">
-      {createTikTokSnippet(id, debug)}
+    <Script id='tiktok-pixel-next' strategy='afterInteractive'>
+      {createTikTokSnippet(pixelId, debug)}
     </Script>
   );
 }
 
-export function TikTokPixelNext(props: PixelOptions) {
+export function TikTokPixelNextProvider(props: PixelOptions) {
   return (
     <Suspense fallback={null}>
       <PixelLogic {...props} />

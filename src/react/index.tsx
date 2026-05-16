@@ -1,17 +1,16 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-
-import { injectTikTokPixel } from "../core/inject";
+import { useEffect } from 'react';
+import { injectTikTokPixel } from '../core/inject';
 
 export function useTikTokReact(
-  id: string,
+  pixelId: string,
   location?: any,
-  debug?: boolean
+  debug?: boolean,
 ) {
   useEffect(() => {
-    injectTikTokPixel(id, debug);
-  }, [id, debug]);
+    injectTikTokPixel(pixelId, debug);
+  }, [pixelId, debug]);
 
   useEffect(() => {
     if (window.ttq) {

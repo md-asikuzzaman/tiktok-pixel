@@ -1,16 +1,16 @@
 export type TikTokEvent =
-  | "AddToCart"
-  | "CompletePayment"
-  | "InitiateCheckout"
-  | "ViewContent"
-  | "SubmitForm"
-  | "Search"
-  | "Contact"
-  | "CompleteRegistration"
-  | "Subscribe";
+  | 'AddToCart'
+  | 'CompletePayment'
+  | 'InitiateCheckout'
+  | 'ViewContent'
+  | 'SubmitForm'
+  | 'Search'
+  | 'Contact'
+  | 'CompleteRegistration'
+  | 'Subscribe';
 
 export interface PixelOptions {
-  id: string;
+  pixelId: string;
   debug?: boolean;
 }
 

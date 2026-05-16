@@ -1,4 +1,19 @@
-var u=(t,o)=>{var e,i;typeof window!="undefined"&&window.ttq?window.ttq.track(t,o):((i=(e=globalThis.process)==null?void 0:e.env)==null?void 0:i.NODE_ENV)==="development"&&console.warn(`[TikTok Pixel] "${t}" fired before initialization`)},w=()=>{typeof window!="undefined"&&window.ttq&&window.ttq.page()};import{usePathname as c,useSearchParams as p}from"next/navigation";import f from"next/script";import{Suspense as d,useEffect as l}from"react";var n=(t,o)=>`
+import { usePathname, useSearchParams } from 'next/navigation';
+import Script from 'next/script';
+import { Suspense, useEffect } from 'react';
+import { jsx } from 'react/jsx-runtime';
+
+// src/core/events.ts
+var track = (event, data) => {
+  if (typeof window !== "undefined" && window.ttq) {
+    window.ttq.track(event, data);
+  } else if (globalThis.process?.env?.NODE_ENV === "development") {
+    console.warn(`[TikTok Pixel] "${event}" fired before initialization`);
+  }
+};
+
+// src/core/snippet.ts
+var createTikTokSnippet = (id, debug) => `
 !function (w, d, t) {
   w.TiktokAnalyticsObject = t;
   var ttq = w[t] = w[t] || [];
@@ -51,9 +66,46 @@ var u=(t,o)=>{var e,i;typeof window!="undefined"&&window.ttq?window.ttq.track(t,
     a.parentNode.insertBefore(o, a);
   };
 
-  ttq.load('${t}');
+  ttq.load('${id}');
 
-  ${o?"ttq.debug();":""}
+  ${debug ? "ttq.debug();" : ""}
 }(window, document, 'ttq');
-`;import{jsx as r}from"react/jsx-runtime";function m({id:t,debug:o}){let e=c(),i=p();return l(()=>{window.ttq&&window.ttq.page()},[e,i]),r(f,{id:"tiktok-pixel-next",strategy:"afterInteractive",children:n(t,o)})}function k(t){return r(d,{fallback:null,children:r(m,{...t})})}var b=k;import{useEffect as s}from"react";var a=(t,o)=>{if(typeof window=="undefined"||window.ttq)return;let e=document.createElement("script");e.innerHTML=n(t,o),document.head.appendChild(e)};function N(t,o,e){s(()=>{a(t,e)},[t,e]),s(()=>{window.ttq&&window.ttq.page()},[o])}export{k as TikTokPixel,b as TikTokPixelNext,w as page,u as track,N as useTikTokReact};
+`;
+function PixelLogic({ pixelId, debug }) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    if (window.ttq) {
+      window.ttq.page();
+    }
+  }, [pathname, searchParams]);
+  return /* @__PURE__ */ jsx(Script, { id: "tiktok-pixel-next", strategy: "afterInteractive", children: createTikTokSnippet(pixelId, debug) });
+}
+function TikTokPixelNextProvider(props) {
+  return /* @__PURE__ */ jsx(Suspense, { fallback: null, children: /* @__PURE__ */ jsx(PixelLogic, { ...props }) });
+}
+
+// src/core/inject.ts
+var injectTikTokPixel = (id, debug) => {
+  if (typeof window === "undefined") return;
+  if (window.ttq) return;
+  const script = document.createElement("script");
+  script.innerHTML = createTikTokSnippet(id, debug);
+  document.head.appendChild(script);
+};
+
+// src/react/index.tsx
+function useTikTokReact(pixelId, location, debug) {
+  useEffect(() => {
+    injectTikTokPixel(pixelId, debug);
+  }, [pixelId, debug]);
+  useEffect(() => {
+    if (window.ttq) {
+      window.ttq.page();
+    }
+  }, [location]);
+}
+
+export { TikTokPixelNextProvider, track, useTikTokReact };
+//# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

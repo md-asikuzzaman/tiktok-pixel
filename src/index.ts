@@ -1,7 +1,7 @@
-export * from "./types";
+// export * from './types';
 
-export * from "./core/events";
+export * from './core/events';
 
-export * from "./TikTokPixel";
+export * from './next';
 
-export * from "./react";
+export * from './react';
