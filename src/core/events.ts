@@ -1,17 +1,18 @@
-'use client';
+import type { TikTokEvent, TikTokEventData } from "../types";
 
-import type { TikTokEvent } from '@/types';
-
-export const track = (event: TikTokEvent, data?: object) => {
-  if (typeof window !== 'undefined' && window.ttq) {
+// Server-safe `track` utility. Can be imported in RSC/server code.
+export const track = (event: TikTokEvent, data?: TikTokEventData) => {
+  if (typeof window !== "undefined" && window.ttq) {
     window.ttq.track(event, data);
-  } else if ((globalThis as any).process?.env?.NODE_ENV === 'development') {
-    console.warn(`[TikTok Pixel] "${event}" fired before initialization`);
+    return;
+  }
+
+  // On server or before SDK initialization, it's a no-op. Keep a quiet
+  // development warning to help debugging in client-side development only.
+  if (typeof window === "undefined") return;
+
+  if ((globalThis as any)?.process?.env?.NODE_ENV === "development") {
+    // eslint-disable-next-line no-console
+    console.warn(`[tiktok-pixel] "${event}" fired before initialization`);
   }
 };
-
-// export const page = () => {
-//   if (typeof window !== 'undefined' && window.ttq) {
-//     window.ttq.page();
-//   }
-// };

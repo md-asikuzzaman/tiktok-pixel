@@ -1,30 +1,19 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from "tsup";
 
-export default defineConfig(({ watch }) => ({
-  entry: ['src/index.ts'],
-  format: ['cjs', 'esm'],
-  outDir: './dist',
-  outExtension: ({ format }) => {
-    return {
-      js: format === 'cjs' ? '.cjs' : '.mjs',
-    };
-  },
+export default defineConfig({
+  entry: ["src/index.ts", "src/server.ts", "src/client.ts"],
+  format: ["cjs", "esm"],
   dts: true,
   sourcemap: true,
-  // minify: true,
   clean: true,
-
-  target: 'es2022',
-  platform: 'browser',
   splitting: false,
-  treeshake: true,
-  external: ['react', 'react-dom'],
-  esbuildOptions(options) {
-    options.define = {
-      ...(options.define ?? {}),
-      'process.env.NODE_ENV': JSON.stringify(
-        watch ? 'development' : 'production',
-      ),
+  minify: false,
+  external: ["react", "react-dom", "next", "next/navigation", "next/script"],
+  outDir: "dist",
+  shims: false,
+  outExtension({ format }) {
+    return {
+      js: format === "cjs" ? ".cjs" : ".mjs",
     };
   },
-}));
+});

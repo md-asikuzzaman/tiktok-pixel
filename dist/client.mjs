@@ -129,4 +129,4 @@ export {
   track,
   useTikTokReact
 };
-//# sourceMappingURL=index.mjs.map
+//# sourceMappingURL=client.mjs.map

@@ -28,14 +28,14 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/index.ts
-var index_exports = {};
-__export(index_exports, {
+// src/client.ts
+var client_exports = {};
+__export(client_exports, {
   TikTokProvider: () => TikTokProvider,
   track: () => track,
   useTikTokReact: () => useTikTokReact
 });
-module.exports = __toCommonJS(index_exports);
+module.exports = __toCommonJS(client_exports);
 
 // src/next/TikTokProvider.tsx
 var import_react = require("react");
@@ -167,4 +167,4 @@ var track = (event, data) => {
   track,
   useTikTokReact
 });
-//# sourceMappingURL=index.cjs.map
+//# sourceMappingURL=client.cjs.map
