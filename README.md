@@ -1,160 +1,144 @@
 # tiktok-pixel
 
-> A small, framework-friendly library to integrate the TikTok Pixel in Next.js, React (Vite), and other environments. Focused on developer experience with typed exports, easy server/client usage, and simple event tracking.
+![tiktok-pixel banner](./assets/banner.svg)
 
-**Highlights**
+TikTok Pixel SDK for React and Next.js App Router.
 
-- Lightweight, ESM + CJS bundles in `dist/`.
-- TypeScript types included.
-- Ready-to-publish package that only contains build artifacts.
+Type-safe API, ESM + CJS build, and Next.js 16-compatible client boundaries.
 
-**Installation**
+## Demo
+
+![tiktok-pixel demo](./assets/demo.svg)
+
+## Features
+
+- React + Next.js 15/16 support
+- Client-first root API
+- Optional server subpath export
+- Strong TypeScript types
+- ESM + CJS outputs with source maps
+- `tsup` build with declaration files
+
+## Install
 
 ```bash
 npm install tiktok-pixel
-# or
-yarn add tiktok-pixel
 ```
 
-**Quick Start**
+## Imports
 
-- Build the package locally: `npm run build` (configured with `tsup`).
-- Import the exports you need in your app (Next.js or React/Vite).
+```ts
+import { TikTokProvider, useTikTokReact, track } from "tiktok-pixel";
+```
 
-**Next.js Usage**
+Optional server import:
 
-Use the `TikTokPixelNext` component to inject the TikTok Pixel on Next.js pages or in `_app.tsx`.
+```ts
+import { track } from "tiktok-pixel/server";
+```
 
-Example (`pages/_app.tsx`):
+## Next.js App Router Example
+
+`app/providers.tsx`
 
 ```tsx
-import type { AppProps } from "next/app";
-import { TikTokPixelNext } from "tiktok-pixel";
+"use client";
 
-export default function App({ Component, pageProps }: AppProps) {
+import { TikTokProvider } from "tiktok-pixel";
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  return <TikTokProvider pixelId="YOUR_PIXEL_ID">{children}</TikTokProvider>;
+}
+```
+
+`app/layout.tsx`
+
+```tsx
+import Providers from "./providers";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <TikTokPixelNext id="YOUR_PIXEL_ID" />
-      <Component {...pageProps} />
-    </>
+    <html lang="en">
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
   );
 }
 ```
 
-Track events anywhere in your app by importing `track`:
-
-```ts
-import { track } from "tiktok-pixel";
-
-track("AddToCart", {
-  value: 20,
-  currency: "USD",
-});
-```
-
-Notes:
-
-- The `TikTokPixelNext` component injects the pixel on the client only.
-- `track` is safe to call from client-side code after the pixel is initialized.
-
-**React (Vite) Usage**
-
-If you're using `react-router` (Vite or CRA), use the `useTikTokReact` hook to initialize the pixel and react to route changes.
-
-Example (`App.tsx`):
+## React SPA Example
 
 ```tsx
 import { useLocation } from "react-router-dom";
-import { useTikTokReact } from "tiktok-pixel";
-
-function App() {
-  const location = useLocation();
-
-  // Initialize pixel and automatically track page views when `location` changes
-  useTikTokReact("YOUR_PIXEL_ID", location);
-
-  return <div>Hello</div>;
-}
-
-export default App;
-```
-
-Track events (same `track` API):
-
-```ts
-import { track } from "tiktok-pixel";
-
-function onAddToCart() {
-  track("AddToCart", { value: 20, currency: "USD" });
-}
-```
-
-**API Reference (quick)**
-
-- `TikTokPixelNext`
-  - Props:
-    - `id: string` (required) — your Pixel ID.
-    - `options?: Record<string, any>` — optional settings for advanced integrations.
-- `useTikTokReact(pixelId: string, location: Location, options?)`
-  - Hook for SPA route-aware integration (call inside components).
-- `track(eventName: string, payload?: Record<string, any>)`
-  - Send a custom event to TikTok.
-
-Example: combine hook + track
-
-```tsx
 import { useTikTokReact, track } from "tiktok-pixel";
-import { useLocation } from "react-router-dom";
 
-function App() {
+export default function App() {
   const location = useLocation();
-  useTikTokReact("YOUR_PIXEL_ID", location);
+  useTikTokReact("YOUR_PIXEL_ID", location, false);
 
   return (
-    <button onClick={() => track("Purchase", { value: 100, currency: "USD" })}>
-      Buy
+    <button onClick={() => track("AddToCart", { value: 29, currency: "USD" })}>
+      Track AddToCart
     </button>
   );
 }
 ```
 
-**Development & Building**
+## API
 
-- Build locally with:
+### `TikTokProvider`
+
+Props:
+
+- `pixelId: string` (required)
+- `debug?: boolean`
+- `children: ReactNode`
+
+### `useTikTokReact(pixelId, location?, debug?)`
+
+- `pixelId: string`
+- `location?: unknown` (pass router location in SPA)
+- `debug?: boolean`
+
+### `track(event, data?)`
+
+- `event: TikTokEvent`
+- `data?: TikTokEventData`
+
+Supported events:
+
+- `AddToCart`
+- `CompletePayment`
+- `InitiateCheckout`
+- `ViewContent`
+- `SubmitForm`
+- `Search`
+- `Contact`
+- `CompleteRegistration`
+- `Subscribe`
+
+## Build
 
 ```bash
 npm run build
 ```
 
-- Validate the publishable files with:
+## Publish Checklist
 
 ```bash
+npm run build
 npm pack --dry-run
+npm publish
 ```
 
-The package is configured to publish only the `dist/` artifacts and `package.json` (see `.npmignore`).
+## Package Details
 
-**Publishing**
+- Package name: `tiktok-pixel`
+- License: MIT
+- Public package: yes
+- Peer dependencies: `react`, `react-dom`, `next`
 
-1. Bump the version in `package.json`.
-2. Run `npm run build`.
-3. Validate with `npm pack --dry-run`.
-4. Run `npm publish` or use your CI pipeline.
+## License
 
-**Contributing**
-
-- Open issues for feature requests or bugs.
-- Send pull requests against `main` with a clear description and tests where applicable.
-
-**License**
-
-MIT — see `package.json` for details.
-
----
-
-If you'd like, I can also scaffold a minimal example app:
-
-- `examples/next` — small Next.js demo using `TikTokPixelNext`.
-- `examples/react-vite` — Vite + React demo using `useTikTokReact`.
-
-Tell me which example you'd like and I will scaffold it.
+MIT

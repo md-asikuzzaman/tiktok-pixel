@@ -1,7 +1,7 @@
 {
   "name": "tiktok-pixel",
   "version": "1.0.0",
-  "description": "React + Next.js TikTok Pixel SDK (client-first root + server entry)",
+  "description": "TikTok Pixel SDK for React and Next.js App Router with TypeScript support",
   "license": "MIT",
   "author": "Md Asikuzzaman",
   "type": "module",
@@ -49,6 +49,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=18.18"
+  },
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
@@ -57,12 +60,25 @@
     "lint": "eslint src --ext .ts,.tsx"
   },
   "keywords": [
-    "react",
-    "next",
+    "tiktok-pixel",
+    "tiktok pixel",
     "tiktok",
+    "ttq",
+    "analytics sdk",
+    "conversion tracking",
+    "event tracking",
+    "marketing analytics",
+    "react",
+    "react sdk",
+    "next",
+    "nextjs-app-router",
+    "nextjs-16",
+    "rsc",
     "analytics",
     "pixel",
-    "nextjs"
+    "nextjs",
+    "typescript",
+    "tsup"
   ],
   "repository": {
     "type": "git",

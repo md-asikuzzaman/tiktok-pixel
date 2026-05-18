@@ -1,0 +1,22 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" fill="#0F172A"/>
+  <rect x="60" y="60" width="1080" height="640" rx="18" fill="#111827" stroke="#334155"/>
+
+  <text x="96" y="124" fill="#E5E7EB" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">Example Integration</text>
+  <text x="96" y="164" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="20">Next.js App Router + React Hook + Event Tracking</text>
+
+  <rect x="96" y="200" width="1008" height="450" rx="12" fill="#020617" stroke="#1E293B"/>
+
+  <text x="120" y="246" fill="#22D3EE" font-family="Consolas, Menlo, monospace" font-size="24">import { TikTokProvider, useTikTokReact, track } from "tiktok-pixel";</text>
+  <text x="120" y="286" fill="#22D3EE" font-family="Consolas, Menlo, monospace" font-size="24">import { track as serverTrack } from "tiktok-pixel/server";</text>
+
+  <text x="120" y="348" fill="#F8FAFC" font-family="Consolas, Menlo, monospace" font-size="22">&lt;TikTokProvider pixelId="YOUR_PIXEL_ID"&gt;</text>
+  <text x="140" y="386" fill="#F8FAFC" font-family="Consolas, Menlo, monospace" font-size="22">&lt;App /&gt;</text>
+  <text x="120" y="424" fill="#F8FAFC" font-family="Consolas, Menlo, monospace" font-size="22">&lt;/TikTokProvider&gt;</text>
+
+  <text x="120" y="486" fill="#F8FAFC" font-family="Consolas, Menlo, monospace" font-size="22">useTikTokReact("YOUR_PIXEL_ID", location);</text>
+  <text x="120" y="526" fill="#F8FAFC" font-family="Consolas, Menlo, monospace" font-size="22">track("AddToCart", { value: 29, currency: "USD" });</text>
+
+  <rect x="96" y="666" width="252" height="44" rx="10" fill="#25F4EE"/>
+  <text x="122" y="694" fill="#0B1220" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700">Production Ready</text>
+</svg>
