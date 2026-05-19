@@ -1,4 +1,4 @@
-export { P as PixelOptions, t as track } from './server-Bhmuq81g.cjs';
+export { P as PixelOptions, t as track } from './server-2tq4R2-O.cjs';
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import { ReactNode } from 'react';
 

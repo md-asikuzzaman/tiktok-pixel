@@ -1,15 +1,2 @@
-// src/core/events.ts
-var track = (event, data) => {
-  if (typeof window !== "undefined" && window.ttq) {
-    window.ttq.track(event, data);
-    return;
-  }
-  if (typeof window === "undefined") return;
-  if (globalThis?.process?.env?.NODE_ENV === "development") {
-    console.warn(`[tiktok-pixel] "${event}" fired before initialization`);
-  }
-};
-export {
-  track
-};
+var o=(t,e)=>{if(typeof window<"u"&&window.ttq){window.ttq.track(t,e);return}typeof window>"u"||globalThis?.process?.env?.NODE_ENV==="development"&&console.warn(`[tiktok-pixel] "${t}" fired before initialization`)};export{o as track};
 //# sourceMappingURL=server.mjs.map

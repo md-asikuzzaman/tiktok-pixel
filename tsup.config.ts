@@ -7,7 +7,7 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   splitting: false,
-  minify: false,
+  minify: true,
   external: ["react", "react-dom", "next", "next/navigation", "next/script"],
   outDir: "dist",
   shims: false,
