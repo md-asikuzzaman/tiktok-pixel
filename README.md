@@ -1,77 +1,76 @@
 # tiktok-pixel
 
-![tiktok-pixel banner](./assets/banner.svg)
-
 TikTok Pixel SDK for React and Next.js App Router.
-
-Type-safe API, ESM + CJS build, and Next.js 16-compatible client boundaries.
-
-## Demo
-
-![tiktok-pixel demo](./assets/demo.svg)
 
 ## Features
 
-- React + Next.js 15/16 support
-- Client-first root API
-- Optional server subpath export
-- Strong TypeScript types
-- ESM + CJS outputs with source maps
-- `tsup` build with declaration files
+- ⚡ Next.js 15/16 App Router ready
+- 🎯 Type-safe event tracking
+- 🧩 `TikTokProvider` Wrap once, track everywhere
+- 🪝 Headless hook — `useTikTokReact()`
+- 🔷 Full TypeScript support
 
-## Install
+
+## Installation
+
+With pnpm
+
+```bash
+pnpm add tiktok-pixel
+```
+
+With npm
 
 ```bash
 npm install tiktok-pixel
 ```
 
-## Imports
+With bun
 
-```ts
-import { TikTokProvider, useTikTokReact, track } from "tiktok-pixel";
+```bash
+bun add tiktok-pixel
 ```
 
-Optional server import:
+## Getting Started
 
-```ts
-import { track } from "tiktok-pixel/server";
-```
+Add `<TikTokProvider />` to your app root. It handles pixel initialization and makes `track()` available everywhere — no extra setup needed.
 
-## Next.js App Router Example
-
-`app/providers.tsx`
+### Next.js App Router
 
 ```tsx
-"use client";
-
+// app/layout.tsx
 import { TikTokProvider } from "tiktok-pixel";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
-  return <TikTokProvider pixelId="YOUR_PIXEL_ID">{children}</TikTokProvider>;
-}
-```
-
-`app/layout.tsx`
-
-```tsx
-import Providers from "./providers";
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <TikTokProvider pixelId="YOUR_PIXEL_ID">
+          {children}
+        </TikTokProvider>
       </body>
     </html>
   );
 }
 ```
 
-## React SPA Example
+Now call `track()` from any client component:
+
+```tsx
+// app/shop/page.tsx
+"use client";
+import { track } from "tiktok-pixel";
+
+export default function ShopPage() {
+  return (
+    <button onClick={() => track("AddToCart", { value: 29, currency: "USD" })}>
+      Add to cart
+    </button>
+  );
+}
+```
+
+### React SPA
 
 ```tsx
 import { useLocation } from "react-router-dom";
@@ -82,66 +81,63 @@ export default function App() {
   useTikTokReact("YOUR_PIXEL_ID", location, false);
 
   return (
-    <button onClick={() => track("AddToCart", { value: 29, currency: "USD" })}>
-      Track AddToCart
+    <button onClick={() => track("ViewContent", { value: 0 })}>
+      Track view
     </button>
   );
 }
+```
+
+## Imports
+
+```ts
+import { TikTokProvider, useTikTokReact, track } from "tiktok-pixel";
+```
+
+Optional server subpath:
+
+```ts
+import { track } from "tiktok-pixel/server";
 ```
 
 ## API
 
 ### `TikTokProvider`
 
-Props:
-
-- `pixelId: string` (required)
-- `debug?: boolean`
-- `children: ReactNode`
+| Prop | Type | Required | Description |
+|------|------|:--------:|-------------|
+| `pixelId` | `string` | ✓ | Your TikTok Pixel ID |
+| `debug` | `boolean` | | Enable debug logging |
+| `children` | `ReactNode` | | React children |
 
 ### `useTikTokReact(pixelId, location?, debug?)`
 
-- `pixelId: string`
-- `location?: unknown` (pass router location in SPA)
-- `debug?: boolean`
+| Param | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `pixelId` | `string` | ✓ | Your TikTok Pixel ID |
+| `location` | `unknown` | | Router location — re-fires pixel on route change |
+| `debug` | `boolean` | | Enable debug logging |
 
 ### `track(event, data?)`
 
-- `event: TikTokEvent`
-- `data?: TikTokEventData`
+| Param | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `event` | `TikTokEvent` | ✓ | One of the supported event names |
+| `data` | `TikTokEventData` | | Optional event payload |
 
-Supported events:
+### Supported Events
 
-- `AddToCart`
-- `CompletePayment`
-- `InitiateCheckout`
-- `ViewContent`
-- `SubmitForm`
-- `Search`
-- `Contact`
-- `CompleteRegistration`
-- `Subscribe`
-
-## Build
-
-```bash
-npm run build
-```
-
-## Publish Checklist
-
-```bash
-npm run build
-npm pack --dry-run
-npm publish
-```
-
-## Package Details
-
-- Package name: `tiktok-pixel`
-- License: MIT
-- Public package: yes
-- Peer dependencies: `react`, `react-dom`, `next`
+| Event |
+|-------|
+| `AddToCart` |
+| `CompletePayment` |
+| `InitiateCheckout` |
+| `ViewContent` |
+| `SubmitForm` |
+| `Search` |
+| `Contact` |
+| `CompleteRegistration` |
+| `Subscribe` |
 
 ## License
 
