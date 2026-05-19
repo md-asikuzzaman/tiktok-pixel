@@ -1,4 +1,4 @@
-# tiktok-pixel
+# next-tiktok-pixel
 
 TikTok Pixel SDK for React and Next.js App Router.
 
@@ -10,25 +10,24 @@ TikTok Pixel SDK for React and Next.js App Router.
 - 🪝 Headless hook — `useTikTokReact()`
 - 🔷 Full TypeScript support
 
-
 ## Installation
 
 With pnpm
 
 ```bash
-pnpm add tiktok-pixel
+pnpm add next-tiktok-pixel
 ```
 
 With npm
 
 ```bash
-npm install tiktok-pixel
+npm install next-tiktok-pixel
 ```
 
 With bun
 
 ```bash
-bun add tiktok-pixel
+bun add next-tiktok-pixel
 ```
 
 ## Getting Started
@@ -39,15 +38,17 @@ Add `<TikTokProvider />` to your app root. It handles pixel initialization and m
 
 ```tsx
 // app/layout.tsx
-import { TikTokProvider } from "tiktok-pixel";
+import { TikTokProvider } from "next-tiktok-pixel";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body>
-        <TikTokProvider pixelId="YOUR_PIXEL_ID">
-          {children}
-        </TikTokProvider>
+        <TikTokProvider pixelId="YOUR_PIXEL_ID">{children}</TikTokProvider>
       </body>
     </html>
   );
@@ -59,7 +60,7 @@ Now call `track()` from any client component:
 ```tsx
 // app/shop/page.tsx
 "use client";
-import { track } from "tiktok-pixel";
+import { track } from "next-tiktok-pixel";
 
 export default function ShopPage() {
   return (
@@ -74,7 +75,7 @@ export default function ShopPage() {
 
 ```tsx
 import { useLocation } from "react-router-dom";
-import { useTikTokReact, track } from "tiktok-pixel";
+import { useTikTokReact, track } from "next-tiktok-pixel";
 
 export default function App() {
   const location = useLocation();
@@ -91,53 +92,53 @@ export default function App() {
 ## Imports
 
 ```ts
-import { TikTokProvider, useTikTokReact, track } from "tiktok-pixel";
+import { TikTokProvider, useTikTokReact, track } from "next-tiktok-pixel";
 ```
 
 Optional server subpath:
 
 ```ts
-import { track } from "tiktok-pixel/server";
+import { track } from "next-tiktok-pixel/server";
 ```
 
 ## API
 
 ### `TikTokProvider`
 
-| Prop | Type | Required | Description |
-|------|------|:--------:|-------------|
-| `pixelId` | `string` | ✓ | Your TikTok Pixel ID |
-| `debug` | `boolean` | | Enable debug logging |
-| `children` | `ReactNode` | | React children |
+| Prop       | Type        | Required | Description          |
+| ---------- | ----------- | :------: | -------------------- |
+| `pixelId`  | `string`    |    ✓     | Your TikTok Pixel ID |
+| `debug`    | `boolean`   |          | Enable debug logging |
+| `children` | `ReactNode` |          | React children       |
 
 ### `useTikTokReact(pixelId, location?, debug?)`
 
-| Param | Type | Required | Description |
-|-------|------|:--------:|-------------|
-| `pixelId` | `string` | ✓ | Your TikTok Pixel ID |
-| `location` | `unknown` | | Router location — re-fires pixel on route change |
-| `debug` | `boolean` | | Enable debug logging |
+| Param      | Type      | Required | Description                                      |
+| ---------- | --------- | :------: | ------------------------------------------------ |
+| `pixelId`  | `string`  |    ✓     | Your TikTok Pixel ID                             |
+| `location` | `unknown` |          | Router location — re-fires pixel on route change |
+| `debug`    | `boolean` |          | Enable debug logging                             |
 
 ### `track(event, data?)`
 
-| Param | Type | Required | Description |
-|-------|------|:--------:|-------------|
-| `event` | `TikTokEvent` | ✓ | One of the supported event names |
-| `data` | `TikTokEventData` | | Optional event payload |
+| Param   | Type              | Required | Description                      |
+| ------- | ----------------- | :------: | -------------------------------- |
+| `event` | `TikTokEvent`     |    ✓     | One of the supported event names |
+| `data`  | `TikTokEventData` |          | Optional event payload           |
 
 ### Supported Events
 
-| Event |
-|-------|
-| `AddToCart` |
-| `CompletePayment` |
-| `InitiateCheckout` |
-| `ViewContent` |
-| `SubmitForm` |
-| `Search` |
-| `Contact` |
+| Event                  |
+| ---------------------- |
+| `AddToCart`            |
+| `CompletePayment`      |
+| `InitiateCheckout`     |
+| `ViewContent`          |
+| `SubmitForm`           |
+| `Search`               |
+| `Contact`              |
 | `CompleteRegistration` |
-| `Subscribe` |
+| `Subscribe`            |
 
 ## License
 

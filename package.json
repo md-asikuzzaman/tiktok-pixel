@@ -1,5 +1,5 @@
 {
-  "name": "tiktok-pixel",
+  "name": "next-tiktok-pixel",
   "version": "1.0.0",
   "description": "TikTok Pixel SDK for React and Next.js App Router with TypeScript support",
   "license": "MIT",
@@ -60,7 +60,7 @@
     "lint": "eslint src --ext .ts,.tsx"
   },
   "keywords": [
-    "tiktok-pixel",
+    "next-tiktok-pixel",
     "tiktok pixel",
     "tiktok",
     "ttq",
@@ -81,12 +81,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/md-asikuzzaman/tiktok-pixel"
+    "url": "https://github.com/md-asikuzzaman/next-tiktok-pixel"
   },
   "bugs": {
-    "url": "https://github.com/md-asikuzzaman/tiktok-pixel/issues"
+    "url": "https://github.com/md-asikuzzaman/next-tiktok-pixel/issues"
   },
-  "homepage": "https://github.com/md-asikuzzaman/tiktok-pixel#readme",
+  "homepage": "https://github.com/md-asikuzzaman/next-tiktok-pixel#readme",
   "peerDependencies": {
     "next": ">=16.0.0 <17",
     "react": ">=18.0.0 <20",

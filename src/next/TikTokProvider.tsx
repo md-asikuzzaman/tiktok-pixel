@@ -32,7 +32,7 @@ export function TikTokProvider({
 }: TikTokProviderProps) {
   return (
     <>
-      <Script id="tiktok-pixel" strategy="afterInteractive">
+      <Script id="next-tiktok-pixel" strategy="afterInteractive">
         {createTikTokSnippet(pixelId, debug)}
       </Script>
 

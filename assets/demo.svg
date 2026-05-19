@@ -7,8 +7,8 @@
 
   <rect x="96" y="200" width="1008" height="450" rx="12" fill="#020617" stroke="#1E293B"/>
 
-  <text x="120" y="246" fill="#22D3EE" font-family="Consolas, Menlo, monospace" font-size="24">import { TikTokProvider, useTikTokReact, track } from "tiktok-pixel";</text>
-  <text x="120" y="286" fill="#22D3EE" font-family="Consolas, Menlo, monospace" font-size="24">import { track as serverTrack } from "tiktok-pixel/server";</text>
+  <text x="120" y="246" fill="#22D3EE" font-family="Consolas, Menlo, monospace" font-size="24">import { TikTokProvider, useTikTokReact, track } from "next-tiktok-pixel";</text>
+  <text x="120" y="286" fill="#22D3EE" font-family="Consolas, Menlo, monospace" font-size="24">import { track as serverTrack } from "next-tiktok-pixel/server";</text>
 
   <text x="120" y="348" fill="#F8FAFC" font-family="Consolas, Menlo, monospace" font-size="22">&lt;TikTokProvider pixelId="YOUR_PIXEL_ID"&gt;</text>
   <text x="140" y="386" fill="#F8FAFC" font-family="Consolas, Menlo, monospace" font-size="22">&lt;App /&gt;</text>

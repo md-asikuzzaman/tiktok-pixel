@@ -23,7 +23,7 @@
   <rect x="138" y="104" width="1004" height="432" rx="28" fill="#0B1220" stroke="url(#accent)" stroke-width="3"/>
 
   <text x="198" y="232" fill="#E5E7EB" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="700">
-    tiktok-pixel
+    next-tiktok-pixel
   </text>
 
   <text x="198" y="294" fill="#9CA3AF" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="500">
@@ -31,11 +31,11 @@
   </text>
 
   <text x="198" y="352" fill="#D1D5DB" font-family="Consolas, Menlo, monospace" font-size="26">
-    import { TikTokProvider, useTikTokReact, track } from "tiktok-pixel"
+    import { TikTokProvider, useTikTokReact, track } from "next-tiktok-pixel"
   </text>
 
   <text x="198" y="402" fill="#D1D5DB" font-family="Consolas, Menlo, monospace" font-size="26">
-    import { track } from "tiktok-pixel/server"
+    import { track } from "next-tiktok-pixel/server"
   </text>
 
   <rect x="198" y="440" width="146" height="46" rx="12" fill="#25F4EE"/>

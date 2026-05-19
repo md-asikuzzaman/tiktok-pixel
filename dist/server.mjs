@@ -1,2 +1,2 @@
-var o=(t,e)=>{if(typeof window<"u"&&window.ttq){window.ttq.track(t,e);return}typeof window>"u"||globalThis?.process?.env?.NODE_ENV==="development"&&console.warn(`[tiktok-pixel] "${t}" fired before initialization`)};export{o as track};
+var o=(t,e)=>{if(typeof window<"u"&&window.ttq){window.ttq.track(t,e);return}typeof window>"u"||globalThis?.process?.env?.NODE_ENV==="development"&&console.warn(`[next-tiktok-pixel] "${t}" fired before initialization`)};export{o as track};
 //# sourceMappingURL=server.mjs.map

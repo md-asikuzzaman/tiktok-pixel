@@ -13,6 +13,6 @@ export const track = (event: TikTokEvent, data?: TikTokEventData) => {
 
   if ((globalThis as any)?.process?.env?.NODE_ENV === "development") {
     // eslint-disable-next-line no-console
-    console.warn(`[tiktok-pixel] "${event}" fired before initialization`);
+    console.warn(`[next-tiktok-pixel] "${event}" fired before initialization`);
   }
 };
