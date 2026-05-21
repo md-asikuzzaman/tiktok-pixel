@@ -1,6 +1,6 @@
 # next-tiktok-pixel
 
-> TikTok Pixel SDK for React & Next.js App Router — type-safe events, ESM + CJS, zero config.
+TikTok Pixel SDK for React & Next.js App Router — type-safe events, ESM + CJS, zero config.
 
 [![npm version](https://img.shields.io/npm/v/next-tiktok-pixel)](https://www.npmjs.com/package/next-tiktok-pixel)
 [![npm downloads](https://img.shields.io/npm/dm/next-tiktok-pixel)](https://www.npmjs.com/package/next-tiktok-pixel)
